@@ -1,0 +1,12 @@
+[
+    {
+        "model": "giftbuddyapi.recipient",
+        "pk": 1,
+        "fields": {
+            "gifter": 1,
+            "first_name": "Linley",
+            "last_name": "Schroyer",
+            "interests": []
+        }
+    }
+]
