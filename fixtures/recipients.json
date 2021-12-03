@@ -7,5 +7,14 @@
             "name": "Linley Schroyer",
             "interests": []
         }
+    },
+    {
+        "model": "giftbuddyapi.recipient",
+        "pk": 2,
+        "fields": {
+            "gifter": 1,
+            "name": "Karlee Green",
+            "interests": []
+        }
     }
 ]

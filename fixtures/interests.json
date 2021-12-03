@@ -1,0 +1,72 @@
+[
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 1,
+        "fields": {
+            "label": "Camping Gear"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 2,
+        "fields": {
+            "label": "Football"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 3,
+        "fields": {
+            "label": "Princess"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 4,
+        "fields": {
+            "label": "Basketball"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 5,
+        "fields": {
+            "label": "Women's Clothing"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 6,
+        "fields": {
+            "label": "Men's Clothing"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 7,
+        "fields": {
+            "label": "Video Games"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 8,
+        "fields": {
+            "label": "Non-Fiction Boos"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 9,
+        "fields": {
+            "label": "Fiction Books"
+        }
+    },
+    {
+        "model": "giftbuddyapi.interest",
+        "pk": 10,
+        "fields": {
+            "label": "Movies"
+        }
+    }
+]

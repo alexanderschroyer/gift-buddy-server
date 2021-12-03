@@ -1,0 +1,34 @@
+[
+    {
+        "model": "giftbuddyapi.recipientinterest",
+        "pk": 1,
+        "fields": {
+            "interest": 3,
+            "recipient": 1
+        }
+    },
+    {
+        "model": "giftbuddyapi.recipientinterest",
+        "pk": 2,
+        "fields": {
+            "interest": 10,
+            "recipient": 1
+        }
+    },
+    {
+        "model": "giftbuddyapi.recipientinterest",
+        "pk": 3,
+        "fields": {
+            "interest": 1,
+            "recipient": 2
+        }
+    },
+    {
+        "model": "giftbuddyapi.recipientinterest",
+        "pk": 4,
+        "fields": {
+            "interest": 5,
+            "recipient": 2
+        }
+    }
+]

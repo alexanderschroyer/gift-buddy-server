@@ -1,0 +1,10 @@
+[
+    {
+        "model": "giftbuddyapi.gifter",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "bio": "Christmas is here, spread the cheer!"
+        }
+    }
+]
