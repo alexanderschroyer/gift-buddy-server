@@ -4,8 +4,7 @@
         "pk": 1,
         "fields": {
             "gifter": 1,
-            "name": "Linley Schroyer",
-            "interests": []
+            "name": "Linley Schroyer"
         }
     },
     {
@@ -13,8 +12,7 @@
         "pk": 2,
         "fields": {
             "gifter": 1,
-            "name": "Karlee Green",
-            "interests": []
+            "name": "Karlee Green"
         }
     }
 ]
