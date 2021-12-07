@@ -29,7 +29,6 @@ class RecipientView(ViewSet):
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
-
     def retrieve(self, request, pk=None):
         """Handle GET requests for single recipient
 
@@ -50,9 +49,10 @@ class RecipientView(ViewSet):
             Response -- JSON serialized list of recipients
         """
         recipients = Recipient.objects.all()
+
         recipient_interest = self.request.query_params.get('interest', None)
         # if recipient_interest in not None:
-        #     recipients = recipients.filter(recipient_interest__id=recipient_interest)
+        #     recipients = recipients.filter(interest=recipient_interest)
 
         serializer = RecipientSerializer(
             recipients, many=True, context={'request': request})
@@ -117,6 +117,7 @@ class RecipientInterestSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecipientInterest
         fields = ('interest')
+        depth = 1
 
 class RecipientSerializer(serializers.ModelSerializer):
     """JSON serializer for recipients

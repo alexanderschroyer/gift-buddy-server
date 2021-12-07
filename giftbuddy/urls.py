@@ -19,10 +19,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path
 from rest_framework import routers
-from giftbuddyapi.views import register_user, login_user, RecipientView
+from giftbuddyapi.views import register_user, login_user, RecipientView, InterestView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'recipients', RecipientView, 'recipient')
+router.register(r'interests', InterestView, 'interest')
 
 urlpatterns = [
     path('', include(router.urls)),
