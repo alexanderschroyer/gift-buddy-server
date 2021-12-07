@@ -76,6 +76,18 @@ class RecipientView(ViewSet):
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    def update(self, request, pk=None):
+        """"""
+        gifter = Gifter.objects.get(user=request.auth.user)
+
+        recipient = Recipient.objects.get(pk=pk)
+        recipient.gifter = gifter
+        recipient.name = request.data["name"]
+        recipient.interests = request.data["inteterests"]
+        recipient.save()
+
+        return Response({'hey now'}, status=status.HTTP_204_NO_CONTENT)
+
 class RecipientUserSerializer(serializers.ModelSerializer):
     """JSON serializer for games
 
