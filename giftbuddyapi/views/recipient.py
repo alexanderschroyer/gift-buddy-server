@@ -128,7 +128,7 @@ class RecipientInterestSerializer(serializers.ModelSerializer):
     interest = InterestSerializer()
     class Meta:
         model = RecipientInterest
-        fields = ('interest')
+        fields = ('interest',)
         depth = 1
 
 class RecipientSerializer(serializers.ModelSerializer):
@@ -138,7 +138,7 @@ class RecipientSerializer(serializers.ModelSerializer):
         serializer type
     """
     gifter = GifterSerializer()
-    # interests = RecipientInterestSerializer()
+    interests = RecipientInterestSerializer()
     class Meta:
         model = Recipient
         fields = ('id', 'gifter', 'name', 'interests')

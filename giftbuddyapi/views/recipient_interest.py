@@ -3,9 +3,11 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from giftbuddyapi.models import RecipientInterest
-from giftbuddyapi.views.recipient import RecipientInterestSerializer
+from giftbuddyapi.models.interests import Interest
+from giftbuddyapi.models.recipient import Recipient
+# from giftbuddyapi.views.recipient import RecipientInterestSerializer
 
-class RecipientInterest(ViewSet):
+class RecipientInterestView(ViewSet):
     """"""
 
     def retrieve(self, request, pk=None):
@@ -24,3 +26,31 @@ class RecipientInterest(ViewSet):
         serializer = RecipientInterestSerializer(
             recipient_interests, many=True, context={'request': request})
         return Response(serializer.data)
+
+class InterestSerializer(serializers.ModelSerializer):
+    """JSON serializer for interests
+
+    Arguments:
+        serializer type
+    """
+    class Meta:
+        model = Interest
+        fields = ('label',)
+
+class RecipientSerializer(serializers.ModelSerializer):
+    """JSON serializer for recipients
+
+    Arguments:
+        serializer type
+    """
+    class Meta:
+        model = Recipient
+        fields = ('id', 'gifter', 'name', 'interests')
+
+class RecipientInterestSerializer(serializers.ModelSerializer):
+    """"""
+    interest = InterestSerializer()
+    recipient = RecipientSerializer()
+    class Meta:
+        model = RecipientInterest
+        fields = ('recipient', 'interest')
