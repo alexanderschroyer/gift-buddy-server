@@ -117,7 +117,7 @@ class InterestSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Interest
-        fields = ('label')
+        fields = ('label',)
 
 class RecipientInterestSerializer(serializers.ModelSerializer):
     """JSON serializer for interests
@@ -125,11 +125,9 @@ class RecipientInterestSerializer(serializers.ModelSerializer):
     Arguments:
         serializer type
     """
-    interest = InterestSerializer()
     class Meta:
         model = RecipientInterest
-        fields = ('interest',)
-        depth = 1
+        fields = ('interest', )
 
 class RecipientSerializer(serializers.ModelSerializer):
     """JSON serializer for recipients
@@ -138,7 +136,7 @@ class RecipientSerializer(serializers.ModelSerializer):
         serializer type
     """
     gifter = GifterSerializer()
-    interests = RecipientInterestSerializer()
+    interests = InterestSerializer(many=True)
     class Meta:
         model = Recipient
         fields = ('id', 'gifter', 'name', 'interests')

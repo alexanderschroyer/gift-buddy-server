@@ -43,6 +43,7 @@ class RecipientSerializer(serializers.ModelSerializer):
     Arguments:
         serializer type
     """
+    interests = InterestSerializer(many=True)
     class Meta:
         model = Recipient
         fields = ('id', 'gifter', 'name', 'interests')
