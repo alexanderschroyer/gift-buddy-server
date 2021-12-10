@@ -24,6 +24,7 @@ class RecipientView(ViewSet):
                 gifter=gifter,
                 name=request.data["name"]
             )
+            recipient.interests.set(request.data['interests'])
             serializer = RecipientSerializer(recipient, context={'request': request})
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
@@ -83,7 +84,7 @@ class RecipientView(ViewSet):
         recipient = Recipient.objects.get(pk=pk)
         recipient.gifter = gifter
         recipient.name = request.data["name"]
-        recipient.interests = request.data["inteterests"]
+        recipient.interests = request.data["interests"]
         recipient.save()
 
         return Response({'hey now'}, status=status.HTTP_204_NO_CONTENT)
@@ -114,7 +115,7 @@ class InterestSerializer(serializers.ModelSerializer):
 
     Arguments:
         serializer type
-    """
+    """ 
     class Meta:
         model = Interest
         fields = ('label',)
