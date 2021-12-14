@@ -18,7 +18,6 @@ class RecipientView(ViewSet):
             Response -- JSON serialized recipient instance
         """
         gifter = Gifter.objects.get(user=request.auth.user)
-        # recipient_interest = RecipientInterest.objects.get(pk=request.data["recipientInterestId"])
         try:
             recipient = Recipient.objects.create(
                 gifter=gifter,
