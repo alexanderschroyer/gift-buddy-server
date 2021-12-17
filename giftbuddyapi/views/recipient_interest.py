@@ -35,7 +35,7 @@ class InterestSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Interest
-        fields = ('label',)
+        fields = ('id', 'label')
 
 class RecipientSerializer(serializers.ModelSerializer):
     """JSON serializer for recipients
@@ -54,4 +54,4 @@ class RecipientInterestSerializer(serializers.ModelSerializer):
     recipient = RecipientSerializer()
     class Meta:
         model = RecipientInterest
-        fields = ('recipient', 'interest')
+        fields = ('id', 'recipient', 'interest')

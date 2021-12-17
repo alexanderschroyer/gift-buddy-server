@@ -2,6 +2,7 @@ from django.core.exceptions import ValidationError
 from rest_framework import status
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import serializers
 from giftbuddyapi.models import Recipient, RecipientInterest, Gifter, Interest
@@ -83,10 +84,23 @@ class RecipientView(ViewSet):
         recipient = Recipient.objects.get(pk=pk)
         recipient.gifter = gifter
         recipient.name = request.data["name"]
-        recipient.interests = request.data["interests"]
+        recipient.interests.set(request.data['interests'])
         recipient.save()
 
         return Response({'hey now'}, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['get'], detail=False)
+    def currentuser(self, request):
+        """"""
+        gifter = Gifter.objects.get(user=request.auth.user)
+        try:
+            recipients = Recipient.objects.filter(gifter=gifter)
+            serializer = RecipientSerializer(recipients, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Recipient.DoesNotExist:
+            return Response(
+                [], status=status.HTTP_204_NO_CONTENT
+            )
 
 class RecipientUserSerializer(serializers.ModelSerializer):
     """JSON serializer for games
@@ -117,7 +131,7 @@ class InterestSerializer(serializers.ModelSerializer):
     """ 
     class Meta:
         model = Interest
-        fields = ('label',)
+        fields = ('id','label')
 
 class RecipientInterestSerializer(serializers.ModelSerializer):
     """JSON serializer for interests
@@ -127,7 +141,7 @@ class RecipientInterestSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = RecipientInterest
-        fields = ('interest', )
+        fields = ('id', 'interest')
 
 class RecipientSerializer(serializers.ModelSerializer):
     """JSON serializer for recipients

@@ -52,7 +52,7 @@
         "model": "giftbuddyapi.interest",
         "pk": 8,
         "fields": {
-            "label": "Non-Fiction Boos"
+            "label": "Non-Fiction Books"
         }
     },
     {

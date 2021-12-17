@@ -21,11 +21,16 @@ from django.urls import path
 from rest_framework import routers
 from giftbuddyapi.views import register_user, login_user, RecipientView, InterestView
 from giftbuddyapi.views.recipient_interest import RecipientInterestView
+from giftbuddyapi.views.search import SearchView
+from giftbuddyapi.views.gifter import GifterView
+
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'recipients', RecipientView, 'recipient')
 router.register(r'interests', InterestView, 'interest')
 router.register(r'recipientinterests', RecipientInterestView, 'recipientinterest')
+router.register(r'search', SearchView, 'search')
+router.register(r'gifter', GifterView, 'gifter')
 
 urlpatterns = [
     path('', include(router.urls)),
