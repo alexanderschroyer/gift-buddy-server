@@ -1,0 +1,1 @@
+web: gunicorn giftbuddy.wsgi --log-file -
