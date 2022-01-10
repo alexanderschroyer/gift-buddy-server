@@ -7,8 +7,10 @@ from rest_framework import serializers
 from giftbuddyapi.models import Interest
 from giftbuddyapi.models import Gifter
 
+
 class InterestView(ViewSet):
     """GIft Buddy Interests"""
+
     def create(self, request):
         """"""
         gifter = Gifter.objects.get(user=request.auth.user)
@@ -16,7 +18,8 @@ class InterestView(ViewSet):
             interest = Interest.objects.create(
                 label=request.data["label"]
             )
-            serializer = InterestSerializer(interest, context={'request': request})
+            serializer = InterestSerializer(
+                interest, context={'request': request})
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
@@ -29,7 +32,8 @@ class InterestView(ViewSet):
         """
         try:
             interest = Interest.objects.get(pk=pk)
-            serializer = InterestSerializer(interest, context={'request': request})
+            serializer = InterestSerializer(
+                interest, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
@@ -40,8 +44,35 @@ class InterestView(ViewSet):
         serializer = InterestSerializer(
             interests, many=True, context={'request': request})
         return Response(serializer.data)
-        
 
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for a single interest
+
+        Returns:
+            Response -- 200, 404, or 500 status code
+        """
+        try:
+            interest = Interest.objects.get(pk=pk)
+            interest.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except Interest.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def update(self, request, pk=None):
+        """"""
+        gifter = Gifter.objects.get(user=request.auth.user)
+
+        interest = Interest.objects.get(pk=pk)
+        interest.label = request.data["label"]
+        interest.save()
+
+        return Response({'nope'}, status=status.HTTP_204_NO_CONTENT)
+        
 
 class InterestSerializer(serializers.ModelSerializer):
     """
